@@ -5,7 +5,7 @@ require_relative '../config/initializers/page_loading'
 class BasePage
   include PageObject
   include PageLoading
-  ENV = :local
+  ENV = :dev
   CONF = get_config[ENV]
 
 end

@@ -19,8 +19,4 @@ class LoginPage < BasePage
     email_element.style == "rgba(159, 58, 56, 1)"
   end
 
-  def has_email_error?
-
-  end
-
 end
