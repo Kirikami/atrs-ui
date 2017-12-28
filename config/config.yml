@@ -1,0 +1,20 @@
+:local:
+  :login_url: 'http://localhost:3000/'
+  :valid:
+    :email: 'ruslan@seesawlabs.com'
+    :password: 'qwertyu12'
+  :invalid:
+    :email: 'ruslan@see.com'
+    :password: 'qwertyuas'
+:dev:
+  :login_url: 'https://atrs-prod-server.firebaseapp.com/auth/login'
+  :valid:
+    :email: 'ruslan@seesawlabs.com'
+    :password: 'qwertyu12'
+  :invalid:
+    :email: 'ruslan@see.com'
+    :password: 'qwertyuas'
+:prod:
+  :login_url: 'https://atrs-prod-server.firebaseapp.com/auth/login'
+  :email: 'ruslan@seesawlabs.com'
+  :password: 'qwertyu12'
