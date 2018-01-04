@@ -36,9 +36,6 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
-            
             xvfb-run -s "-screen 0 1920x1080x16" bundle exec rspec \
                             -f AllureCucumber::Formatter \
                             --out allureoutput.log
@@ -50,10 +47,10 @@ jobs:
 
       # collect reports
       - store_test_results:
-          path: /allure-report
+          path: /gen/allure-results
       - store_artifacts:
-          path: /allure-report
-          destination: test-results
+          path: /gen/allure-results
+          destination: /gen/allure-results
 
 workflows:
   version: 2
