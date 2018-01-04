@@ -23,22 +23,30 @@ jobs:
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
+      - run:
+          name: install allure
+          command: |
+            npm install -g allure-commandline --save-dev
+
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-        
+
       - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
             
-            xvfb-run -s "-screen 0 1920x1080x16" bundle exec rspec --format progress \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            "${TEST_FILES}"
+            xvfb-run -s "-screen 0 1920x1080x16" bundle exec rspec \
+                            -f AllureCucumber::Formatter \
+                            --out allureoutput.log
+
+      - run:
+          name: generate report
+          command: |
+            allure generate gen/allure-results
 
       # collect reports
       - store_test_results:
