@@ -29,10 +29,11 @@ jobs:
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             "${TEST_FILES}"
+
+      - run: pwd | ls
       - run:
           name: generate report
           command: allure generate gen/allure-results
-      - run: pwd | ls
       # collect reports
       - store_test_results:
           path: /build/
