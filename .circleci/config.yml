@@ -23,9 +23,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            xvfb-run -s "-screen 0 1920x1080x16" bundle exec rspec \
-                            -f AllureCucumber::Formatter \
-                            --out allureoutput.log
+            bundle exec rspec -f AllureCucumber::Formatter --out allureoutput.log
       - run:
           name: generate report
           command: |
