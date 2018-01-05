@@ -31,13 +31,12 @@ jobs:
                             "${TEST_FILES}"
       - run:
           name: generate report
-          command: |
-            allure generate gen/allure-results
+          command: allure generate gen/allure-results
       # collect reports
       - store_test_results:
-          path: /gen/allure-results
+          path: "/gen/allure-results"
       - store_artifacts:
-          path: /gen/allure-results
+          path: "/gen/allure-results"
           destination: /gen/allure-results
 
 workflows:
