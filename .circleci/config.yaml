@@ -3,61 +3,50 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
-
 jobs:
   build:
+    working_directory: ~/repo
     docker:
        - image: circleci/ruby:latest-node-browsers
-
-    working_directory: ~/repo
-
     steps:
       - checkout
-
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "Gemfile.lock" }}
           - v1-dependencies-
-
       - run:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
-
       -run:
           name: install allure
           command: |
             npm install -g allure-commandline --save-dev
-
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
       - run:
           name: run tests
           command: |
             xvfb-run -s "-screen 0 1920x1080x16" bundle exec rspec \
                             -f AllureCucumber::Formatter \
                             --out allureoutput.log
-
       - run:
           name: generate report
           command: |
             allure generate gen/allure-results
-
       # collect reports
       - store_test_results:
           path: /gen/allure-results
       - store_artifacts:
           path: /gen/allure-results
           destination: /gen/allure-results
-
-general:
-  artifacts:
-    - "build/"
-    - "gen/allure-results/"
-    - "allure-report/"
+      - general:
+          artifacts:
+            - "build/"
+            - "gen/allure-results/"
+            - "allure-report/"
 
 workflows:
   version: 2
