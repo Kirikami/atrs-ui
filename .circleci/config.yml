@@ -23,7 +23,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            bundle exec rspec -f AllureCucumber::Formatter --out allureoutput.log
+            bundle exec rspec
       - run:
           name: generate report
           command: |
