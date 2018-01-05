@@ -30,7 +30,9 @@ jobs:
                             --format progress \
                             "${TEST_FILES}"
 
-      - run: pwd | ls
+      - run:
+          name: show directory
+          command: pwd | ls
       - run:
           name: generate report
           command: allure generate gen/allure-results
