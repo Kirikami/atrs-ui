@@ -34,10 +34,9 @@ jobs:
           command: allure generate gen/allure-results
       # collect reports
       - store_test_results:
-          path: /repo/build/
+          path: /build/
       - store_artifacts:
-          path: /repo/gen/allure-results
-          destination: /repo/gen/allure-results
+          path: /gen/allure-results
 
 workflows:
   version: 2
