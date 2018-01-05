@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/repo
     docker:
        - image: circleci/ruby:latest-node-browsers
