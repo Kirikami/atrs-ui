@@ -36,11 +36,6 @@ jobs:
       - store_artifacts:
           path: /gen/allure-results
           destination: /gen/allure-results
-      - general:
-          artifacts:
-            - "build/"
-            - "gen/allure-results/"
-            - "allure-report/"
 
 workflows:
   version: 2
