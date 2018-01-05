@@ -32,7 +32,7 @@ jobs:
 
       - run:
           name: show directory
-          command: pwd | ls
+          command: pwd
       - run:
           name: generate report
           command: allure generate gen/allure-results
