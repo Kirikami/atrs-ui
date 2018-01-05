@@ -32,11 +32,14 @@ jobs:
       - run:
           name: generate report
           command: allure generate gen/allure-results
+      - run: pwd | ls
       # collect reports
       - store_test_results:
           path: /build/
       - store_artifacts:
           path: /gen/allure-results
+      - store_artifacts:
+          path: /allure-report
 
 workflows:
   version: 2
