@@ -10,7 +10,7 @@
   :login_url: 'https://atrs-prod-server.firebaseapp.com/auth/login'
   :valid:
     :email: 'bgoodwill'
-    :password: 'atrs123'
+    :password: 'qwertyu12'
   :invalid:
     :email: 'ruslan@see.com'
     :password: 'qwertyuas'
