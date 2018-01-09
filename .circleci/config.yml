@@ -39,6 +39,8 @@ jobs:
           destination: allure-results
   generate-report:
     working_directory: ~/repo
+    docker:
+      - image: circleci/ruby:latest-node-browsers
     steps:
       - run:
           name: generate report
