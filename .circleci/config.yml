@@ -30,19 +30,17 @@ jobs:
                             --format progress \
                             "${TEST_FILES}"
 
-      - run:
-          name: show directory
-          command: pwd
-      - run:
-          name: generate report
-          command: allure generate gen/allure-results
+      - run: allure generate gen/allure-results
       # collect reports
       - store_test_results:
           path: build/
+          destination: build
       - store_artifacts:
           path: gen/allure-results
+          destination: allure-results
       - store_artifacts:
           path: allure-report
+          destination: allure-report
 
 workflows:
   version: 2
