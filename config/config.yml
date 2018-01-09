@@ -9,8 +9,8 @@
 :dev:
   :login_url: 'https://atrs-prod-server.firebaseapp.com/auth/login'
   :valid:
-    :email: 'ruslan@seesawlabs.com'
-    :password: 'qwertyu12'
+    :email: 'bgoodwill'
+    :password: 'atrs123'
   :invalid:
     :email: 'ruslan@see.com'
     :password: 'qwertyuas'
