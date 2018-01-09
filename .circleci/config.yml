@@ -55,4 +55,5 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - generate-report
+      - generate-report:
+          requires: test
