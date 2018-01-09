@@ -22,28 +22,14 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir /tmp/test-results
+            (mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
 
             bundle exec rspec --format progress \
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
-                            "${TEST_FILES}"
+                            "${TEST_FILES}"; allure generate gen/allure-results)
 
-      - run:
-        name: generate report
-        command:
-          if [[ "${CIRCLE_NODE_INDEX}" == 0 ]]
-          then
-            allure generate gen/allure-results
-          fi
-      - run:
-        name: generate report
-        command:
-          if [[ "${CIRCLE_NODE_INDEX}" == 1 ]]
-          then
-            allure generate gen/allure-results
-          fi
       # collect reports
       - store_test_results:
           path: build/
