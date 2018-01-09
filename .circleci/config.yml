@@ -7,7 +7,7 @@ jobs:
   test:
     working_directory: ~/repo
     docker:
-      - image: circleci/ruby:latest-node-browsers
+       - image: circleci/ruby:latest-node-browsers
     steps:
       - checkout
       - restore_cache:
@@ -30,6 +30,14 @@ jobs:
                             --format progress \
                             "${TEST_FILES}"
 
+      - run:
+        name: generate report
+        when: on_success
+        command: allure generate gen/allure-results
+      - run:
+        name: generate report
+        when: on_fail
+        command: allure generate gen/allure-results
       # collect reports
       - store_test_results:
           path: build/
@@ -37,15 +45,6 @@ jobs:
       - store_artifacts:
           path: gen/allure-results
           destination: allure-results
-  generate-report:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/ruby:latest-node-browsers
-    steps:
-      - run: sudo npm install -g allure-commandline --save-dev
-      - run:
-          name: generate report
-          command: allure generate gen/allure-results
       - store_artifacts:
           path: allure-report
           destination: allure-report
@@ -55,5 +54,3 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - generate-report:
-          requires: test
