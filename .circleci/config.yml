@@ -32,12 +32,18 @@ jobs:
 
       - run:
         name: generate report
-        when: on_success
-        command: allure generate gen/allure-results
+        command:
+          if [[ "${CIRCLE_NODE_INDEX}" == 0 ]]
+          then
+            allure generate gen/allure-results
+          fi
       - run:
         name: generate report
-        when: on_fail
-        command: allure generate gen/allure-results
+        command:
+          if [[ "${CIRCLE_NODE_INDEX}" == 1 ]]
+          then
+            allure generate gen/allure-results
+          fi
       # collect reports
       - store_test_results:
           path: build/
