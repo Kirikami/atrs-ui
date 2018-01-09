@@ -38,11 +38,11 @@ jobs:
           command: allure generate gen/allure-results
       # collect reports
       - store_test_results:
-          path: /build/
+          path: build/
       - store_artifacts:
-          path: /gen/allure-results
+          path: gen/allure-results
       - store_artifacts:
-          path: /allure-report
+          path: allure-report
 
 workflows:
   version: 2
